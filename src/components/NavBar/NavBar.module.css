@@ -1,0 +1,14 @@
+.nav-bar {
+  background-color: var(--background-color);
+  display: flex;
+  position: sticky;
+  width: 100%;
+  min-height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-navigation {
+  display: flex;
+  gap: 15px;
+}

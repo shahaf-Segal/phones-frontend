@@ -1,0 +1,6 @@
+.navigate-link {
+  color: var(--highlight-text-color);
+}
+.navigate-link-active {
+  text-decoration: underline;
+}
