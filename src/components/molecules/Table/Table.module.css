@@ -1,0 +1,27 @@
+.table {
+  width: 100%;
+  background-color: var(--whiteColor);
+  border-radius: 24px;
+}
+
+.table-head-cell {
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--mainGrey);
+  justify-content: space-between;
+}
+
+.sort-icon {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.table-row {
+  border-bottom: 1px solid #efefef;
+}
+
+.table-data-cell {
+  padding: 12px;
+}
