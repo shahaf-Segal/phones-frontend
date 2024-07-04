@@ -1,6 +1,6 @@
-import Button from '../../../atoms/Button/Button';
-import Icon from '../../../atoms/Icon/Icon';
-import style from './EmptyTable.module.css';
+import Button from "../../../atoms/Button/Button";
+import Icon from "../../../atoms/Icon/Icon";
+import style from "./EmptyTable.module.css";
 
 interface EmptyTableProps {
   columnLength: number;
@@ -14,7 +14,7 @@ const EmptyTable: React.FC<EmptyTableProps> = ({
   return (
     <tr>
       <td colSpan={columnLength}>
-        <div className={style['empty-table-container']}>
+        <div className={style["empty-table-container"]}>
           <Icon
             name="DumpsterIcon"
             height={100}
