@@ -1,7 +1,7 @@
-import { cloneElement, isValidElement } from 'react';
-import { Icon } from '../../atoms/Icon';
-import EmptyTable from './EmptyTable/EmptyTable.jsx';
-import styles from './Table.module.css';
+import { cloneElement, isValidElement } from "react";
+import { Icon } from "../../atoms/Icon";
+import EmptyTable from "./EmptyTable/EmptyTable.jsx";
+import styles from "./Table.module.css";
 
 /**
  * Represents a column in a table.
@@ -18,8 +18,8 @@ interface TableColumn {
   header: string;
   cellContent: keyof Record<string, any> | React.ReactElement;
   width: string;
-  textAlign?: 'start' | 'center' | 'end';
-  verticalAlign?: 'top' | 'middle' | 'bottom';
+  textAlign?: "start" | "center" | "end";
+  verticalAlign?: "top" | "middle" | "bottom";
   propsMapping?:
     | Record<string, string>
     | ((data: Record<string, any>) => Record<string, any>);
@@ -43,11 +43,11 @@ interface TableProps {
   columns: TableColumn[];
   data: Record<string, any>[];
   rowHeight?: string;
-  sort?: { sortBy: keyof Record<string, any>; sortOrder: 'asc' | 'desc' };
+  sort?: { sortBy: keyof Record<string, any>; sortOrder: "asc" | "desc" };
   setSort?: React.Dispatch<
     React.SetStateAction<{
       sortBy: keyof Record<string, any>;
-      sortOrder: 'asc' | 'desc';
+      sortOrder: "asc" | "desc";
     }>
   >;
   reset: (() => void) | null;
@@ -58,7 +58,7 @@ const Table: React.FC<TableProps> = ({
   columns,
   data = [],
   rowHeight,
-  sort = { sortBy: '', sortOrder: 'asc' },
+  sort = { sortBy: "", sortOrder: "asc" },
   setSort = () => {},
   reset,
   showEmptyTable = true,
@@ -67,27 +67,27 @@ const Table: React.FC<TableProps> = ({
     if (isValidElement(column.cellContent)) {
       const propsMapping = column.propsMapping || {};
       const props =
-        typeof propsMapping === 'function' ? propsMapping(row) : propsMapping;
+        typeof propsMapping === "function" ? propsMapping(row) : propsMapping;
       return cloneElement(column.cellContent, props);
-    } else if (typeof column.cellContent === 'string') {
+    } else if (typeof column.cellContent === "string") {
       return <div>{row[column.cellContent]}</div>;
     }
     return null;
   };
 
   return (
-    <table className={styles['table']}>
-      <thead className={styles['table-head']}>
+    <table className={styles["table"]}>
+      <thead className={styles["table-head"]}>
         <tr>
           {columns?.map((column, index) => (
             <th
-              className={styles['table-head-cell']}
+              className={styles["table-head-cell"]}
               key={index}
               style={{ width: column.width }}
               onClick={() => {
                 if (column.sortable && sort) {
                   const newSortOrder =
-                    sort.sortOrder === 'asc' ? 'desc' : 'asc';
+                    sort.sortOrder === "asc" ? "desc" : "asc";
                   setSort({
                     sortBy: column.cellContent as keyof Record<string, any>,
                     sortOrder: newSortOrder,
@@ -97,11 +97,11 @@ const Table: React.FC<TableProps> = ({
             >
               {column.header}
               {column.sortable && (
-                <span className={styles['sort-icon']}>
-                  {sort.sortOrder === 'asc' ? (
+                <span className={styles["sort-icon"]}>
+                  {sort.sortOrder === "asc" ? (
                     <Icon
                       name="ArrowDownIcon"
-                      style={{ transform: 'rotate(180deg)' }}
+                      style={{ transform: "rotate(180deg)" }}
                       color="var(--mainGrey)"
                       width={16}
                       height={16}
@@ -126,13 +126,13 @@ const Table: React.FC<TableProps> = ({
         ) : (
           data?.map((row, rowIndex) => (
             <tr
-              className={styles['table-row']}
+              className={styles["table-row"]}
               style={{ height: rowHeight }}
               key={rowIndex}
             >
               {columns?.map((column, colIndex) => (
                 <td
-                  className={styles['table-data-cell']}
+                  className={styles["table-data-cell"]}
                   key={colIndex}
                   style={{
                     textAlign: column.textAlign,
