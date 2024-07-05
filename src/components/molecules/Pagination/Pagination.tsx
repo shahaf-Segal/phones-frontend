@@ -1,4 +1,4 @@
-import styles from './Pagination.module.css';
+import styles from "./Pagination.module.css";
 
 interface PaginationProps {
   currentPage: number;
@@ -31,23 +31,25 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <section className={styles['pagination-container']}>
+    <section className={styles["pagination-container"]}>
       {currentPage > 1 && (
         <span
           onClick={() => handleClick(currentPage - 1)}
-          className={`${styles['pagination-page']} ${styles['pagination-current-page']}`}
+          className={`${styles["pagination-page"]} ${styles["pagination-current-page"]}`}
         >
-          {'<'}
+          {"<"}
         </span>
       )}
       {Array.from(
         { length: endPage - startPage + 1 },
-        (_, i) => i + startPage,
+        (_, i) => i + startPage
       ).map((page) => (
         <span
           key={page}
           onClick={() => handleClick(page)}
-          className={`${styles['pagination-page']} ${currentPage === page ? styles['pagination-current-page'] : ''}`}
+          className={`${styles["pagination-page"]} ${
+            currentPage === page ? styles["pagination-current-page"] : ""
+          }`}
         >
           {page}
         </span>
@@ -55,9 +57,9 @@ const Pagination: React.FC<PaginationProps> = ({
       {currentPage < totalPages && (
         <span
           onClick={() => handleClick(currentPage + 1)}
-          className={`${styles['pagination-page']} ${styles['pagination-current-page']}`}
+          className={`${styles["pagination-page"]} ${styles["pagination-current-page"]}`}
         >
-          {'>'}
+          {">"}
         </span>
       )}
     </section>

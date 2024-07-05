@@ -7,7 +7,7 @@ Popover.propTypes = {
   isPopoverOpen: propTypes.bool,
   onClose: propTypes.func,
 };
-export const Popover = ({ children, isPopoverOpen, onClose }) => {
+function Popover({ children, isPopoverOpen, onClose }) {
   const togglePopover = () => {
     onClose();
   };
@@ -30,4 +30,5 @@ export const Popover = ({ children, isPopoverOpen, onClose }) => {
       )}
     </>
   );
-};
+}
+export default Popover;
