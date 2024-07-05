@@ -1,6 +1,7 @@
 /**place for all colors and styling properties */
 :root {
   --background-color: #0e0e0e;
+  --background-color-50p: #0e0e0e80;
   --background-secondary-color: #1c1c1c;
   --background-dark-color: #010101;
   --background-light-color: #2e2e2e;
