@@ -1,7 +1,7 @@
 .popover-btn {
   display: inline;
   font-size: 16px;
-  background-color: var(--backgroundColor);
+  background-color: var(--background-color);
   width: 25px;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .overlay {
-  background: var(--overlayColor);
+  background: var(--background-color-50p);
 }
 
 .popover-content {
@@ -32,10 +32,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: var(--backgroundColor);
-  padding: 14px 28px;
-  width: 70vw;
-  height: 80vh;
+  background: var(--background-light-color);
+  padding: 15px;
+  width: 80vw;
+  height: 85vh;
   max-height: 90vh;
   overflow-x: auto;
 }
