@@ -5,11 +5,15 @@ import { baseUrl } from "../../../utils/utils";
 import Popover from "../../atoms/Popover/Popover";
 // import Pagination from "../../molecules/Pagination/Pagination";
 import useQuery from "../../../hooks/useQuery";
+import Button from "../../atoms/Button/Button";
+import Icon from "../../atoms/Icon/Icon";
 import Table from "../../molecules/Table/Table";
+import PhoneEditor from "../../PhoneEditor/PhoneEditor";
 
 function Home() {
   const [phonesArray, setPhonesArray] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [popoverElement, setPopoverElement] = useState();
   const query = useQuery();
 
   //add query later
@@ -20,7 +24,7 @@ function Home() {
       try {
         const res = await axios.get(`${baseUrl}phones?/`);
         setPhonesArray(res.data);
-        toast.success("Phones Loaded", { id: toastID });
+        toast.dismiss(toastID);
       } catch (error) {
         toast.error(error.message, { id: toastID });
       } finally {
@@ -66,14 +70,38 @@ function Home() {
       width: "8%",
       textAlign: "center",
     },
+    {
+      header: "Edit",
+      cellContent: (
+        <Button
+          icon={<Icon name="EditBtnIcon" color="var(--light-text-color)" />}
+          fullWidth={true}
+        />
+      ),
+      width: "15%",
+      propsMapping: (data) => {
+        return {
+          onClick: () => {
+            setPopoverElement(<PhoneEditor phoneID={data._id} />);
+          },
+        };
+      },
+    },
   ];
 
   return (
     <div>
-      <Table columns={columns} data={phonesArray} />
+      {isLoading || <Table columns={columns} data={phonesArray} />}
       {/* <Pagination /> */}
 
-      <Popover></Popover>
+      <Popover
+        isPopoverOpen={Boolean(popoverElement)}
+        onClose={() => {
+          setPopoverElement(null);
+        }}
+      >
+        {popoverElement}
+      </Popover>
     </div>
   );
 }
