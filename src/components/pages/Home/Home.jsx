@@ -37,7 +37,34 @@ function Home() {
       header: "Model",
       cellContent: "model",
       width: "10%",
-      verticalAlign: "middle",
+      textAlign: "center",
+    },
+    {
+      header: "Brand",
+      cellContent: "brand",
+      width: "10%",
+      textAlign: "center",
+    },
+    {
+      header: "Year",
+      cellContent: "releaseYear",
+      width: "8%",
+      textAlign: "center",
+    },
+    {
+      header: "Price",
+      cellContent: <p />,
+      width: "8%",
+      textAlign: "center",
+      propsMapping: (data) => ({
+        children: `${data.price}$`,
+      }),
+    },
+    {
+      header: "OS",
+      cellContent: "os",
+      width: "8%",
+      textAlign: "center",
     },
   ];
 
