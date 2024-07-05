@@ -5,7 +5,7 @@ function AppToaster() {
     className: "toast-popup",
     duration: 5000,
     style: {
-      background: "var(--light-background-color)",
+      background: "var(--purple-color)",
       color: "var(--text-color)",
       minWidth: "250px",
     },

@@ -1,11 +1,12 @@
 .nav-bar {
-  background-color: var(--background-color);
+  background-color: var(--background-secondary-color);
   display: flex;
   position: sticky;
   width: 100%;
-  min-height: 100px;
+  min-height: 75px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .page-navigation {

@@ -5,11 +5,12 @@
 }
 
 .table-head-cell {
+  background-color: var(--background-light-color);
   padding: 8px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: var(--mainGrey);
+  color: var(--highlight-text-color);
   justify-content: space-between;
 }
 
