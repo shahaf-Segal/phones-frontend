@@ -1,0 +1,19 @@
+.phone-editor {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--background-dark-color);
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.form-block {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  min-width: 350px;
+}

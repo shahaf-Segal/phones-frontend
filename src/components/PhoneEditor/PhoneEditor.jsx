@@ -36,11 +36,58 @@ function PhoneEditor({ phoneID }) {
     }
   }, [phoneID]);
 
-  console.log(phoneData);
+  const formSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
-      <form className={styles["phone-editor"]}>
-        <FormBlock></FormBlock>
+      <form className={styles["phone-editor"]} onSubmit={formSubmit}>
+        <div className={styles["form-block"]}>
+          <FormBlock
+            type="text"
+            labelText="Model:"
+            inputName="model"
+            defaultValue={phoneData?.model || ""}
+            required={true}
+          />
+        </div>
+        <div className={styles["form-block"]}>
+          <FormBlock
+            type="text"
+            labelText="Brand:"
+            inputName="brand"
+            defaultValue={phoneData?.brand || ""}
+            required={true}
+          />
+        </div>
+        <div className={styles["form-block"]}>
+          <FormBlock
+            type="text"
+            labelText="Operating System:"
+            inputName="os"
+            defaultValue={phoneData?.os || ""}
+            required={true}
+          />
+        </div>
+        <div className={styles["form-block"]}>
+          <FormBlock
+            type="number"
+            labelText="Release year:"
+            inputName="releaseYear"
+            defaultValue={phoneData?.releaseYear || ""}
+            required={true}
+          />
+        </div>
+        <div className={styles["form-block"]}>
+          <FormBlock
+            type="number"
+            labelText="Price ($):"
+            inputName="price"
+            defaultValue={phoneData?.price || ""}
+            required={true}
+          />
+        </div>
       </form>
     </>
   );

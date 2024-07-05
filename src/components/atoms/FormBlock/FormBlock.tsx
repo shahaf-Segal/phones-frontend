@@ -33,7 +33,6 @@ const FormBlock: React.FC<FormBlock> = ({
       </label>
       {type === "textarea" ? (
         <textarea
-          dir={rtl ? "rtl" : "ltr"}
           id={inputName}
           name={inputName}
           onChange={changeFunc}
@@ -46,7 +45,6 @@ const FormBlock: React.FC<FormBlock> = ({
         />
       ) : (
         <input
-          dir={rtl ? "rtl" : "ltr"}
           type={type}
           id={inputName}
           name={inputName}

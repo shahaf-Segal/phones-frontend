@@ -1,14 +1,15 @@
 .form-label {
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 5px;
+  color: var(--highlight-text-color);
 }
 
 .form-input,
-.form-input[type='date'],
-.form-input[type='number'],
-.form-input[type='text'] {
+.form-input[type="date"],
+.form-input[type="number"],
+.form-input[type="text"] {
   padding: 10px;
-  border: 1px solid var(--lightGrey);
+  border: 1px solid var(--highlight-text-color);
   border-radius: 5px;
   font-size: 14px;
   color: var(--mainGrey);
@@ -17,9 +18,9 @@
 }
 
 .form-input:focus,
-.form-input[type='date']:focus,
-.form-input[type='number']:focus,
-.form-input[type='text']:focus {
+.form-input[type="date"]:focus,
+.form-input[type="number"]:focus,
+.form-input[type="text"]:focus {
   outline: none;
   border-color: var(--mainBlueColor);
   box-shadow: 0 0 0 0.2rem var(--mainPurpleColor-30p);
