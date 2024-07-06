@@ -6,29 +6,32 @@ interface ButtonProps {
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   onClick(): any;
-  type: "primary" | "secondary" | "borderless" | "outline";
+  style: "primary" | "secondary" | "borderless" | "outline";
   fullWidth?: boolean;
   backgroundColor: "dark" | "light";
   disabled?: boolean;
+  type: "button" | "reset" | "submit";
 }
 
 const Button: React.FC<ButtonProps> = ({
+  type = "button",
   text,
   icon,
-  iconPosition = "left",
+  iconPosition = "right",
   onClick,
-  type = "primary",
+  style = "primary",
   fullWidth = false,
   backgroundColor = "light",
   disabled,
 }) => {
-  const buttonClassName = `${styles.button} ${styles[`button-${type}`]} ${
-    styles[`button-${type}-${backgroundColor}`]
+  const buttonClassName = `${styles.button} ${styles[`button-${style}`]} ${
+    styles[`button-${style}-${backgroundColor}`]
   } ${fullWidth ? styles["full-width"] : ""} ${
     disabled ? styles["button-disabled"] : ""
   }`;
   return (
     <button
+      type={type}
       className={buttonClassName}
       style={{ width: fullWidth ? "100%" : "fit-content" }}
       onClick={onClick}

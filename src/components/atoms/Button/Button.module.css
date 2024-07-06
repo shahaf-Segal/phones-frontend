@@ -10,26 +10,20 @@
   line-height: 24px;
 }
 
-.button-disabled {
-  background-color: #f0f0f0;
-  color: #a0a0a0;
-  cursor: not-allowed;
-}
-
 /** primary Btn  */
 .button-primary {
   border-radius: 25px;
   padding: 10px 20px 10px 20px;
   border: none;
-  color: var(--whiteColor);
+  color: var(--highlight-text-color);
 }
 
 .button-primary-dark {
-  background: var(--mainPurpleColor);
+  background: var(--background-dark-color);
 }
 
 .button-primary-light {
-  background-color: var(--secondaryPurpleColor);
+  background-color: var(--background-light-color);
 }
 
 /** secondary Btn  */
