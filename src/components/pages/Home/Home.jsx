@@ -16,21 +16,22 @@ function Home() {
   const [popoverElement, setPopoverElement] = useState();
   const query = useQuery();
 
+  const getPhones = async () => {
+    const toastID = toast.loading("Loading Phones");
+    setIsLoading(true);
+    try {
+      const res = await axios.get(`${baseUrl}phones?/`);
+      setPhonesArray(res.data);
+      toast.dismiss(toastID);
+    } catch (error) {
+      toast.error(error.message, { id: toastID });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   //add query later
   useEffect(() => {
-    const getPhones = async () => {
-      const toastID = toast.loading("Loading Phones");
-      setIsLoading(true);
-      try {
-        const res = await axios.get(`${baseUrl}phones?/`);
-        setPhonesArray(res.data);
-        toast.dismiss(toastID);
-      } catch (error) {
-        toast.error(error.message, { id: toastID });
-      } finally {
-        setIsLoading(false);
-      }
-    };
     if (!isLoading) {
       getPhones();
     }
@@ -98,6 +99,7 @@ function Home() {
         isPopoverOpen={Boolean(popoverElement)}
         onClose={() => {
           setPopoverElement(null);
+          getPhones();
         }}
       >
         {popoverElement}
