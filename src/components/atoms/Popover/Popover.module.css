@@ -14,28 +14,39 @@
   right: 0;
   bottom: 0;
   position: fixed;
+
   z-index: 1000;
 }
 
 .overlay {
   background: var(--background-color-50p);
 }
-
-.popover-content {
-  z-index: 1001;
-  position: absolute;
+.popover {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+}
+.popover-content {
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   line-height: 1.4;
   background: var(--background-light-color);
   padding: 15px;
-  width: 80vw;
+  width: 85vw;
   height: 85vh;
   max-height: 90vh;
   overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .popover {
+    padding: 5px;
+  }
+  .popover-content {
+    padding: 5px;
+  }
 }
