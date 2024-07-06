@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { baseUrl } from "../../utils/utils";
+import Button from "../atoms/Button/Button";
 import FormBlock from "../atoms/FormBlock/FormBlock";
 import styles from "./PhoneEditor.module.css";
 PhoneEditor.propTypes = {
@@ -19,7 +20,6 @@ function PhoneEditor({ phoneID }) {
       setIsLoading(true);
       try {
         const res = await axios.get(`${baseUrl}phones/${phoneID}`);
-        console.log(res);
         setPhoneData(res.data);
         toast.dismiss(toastID);
       } catch (error) {
@@ -36,8 +36,27 @@ function PhoneEditor({ phoneID }) {
     }
   }, [phoneID]);
 
+  const sendPhone = async (phoneData) => {
+    const toastID = toast.loading("Loading Phones");
+    setIsLoading(true);
+    try {
+      const sentRequest = phoneID
+        ? axios.put(`${baseUrl}phones/${phoneID}`, phoneData)
+        : axios.post(`${baseUrl}phones/`, phoneData);
+      await sentRequest;
+      toast.success("Phone saved succesfully", { id: toastID });
+    } catch (error) {
+      toast.error(error.message, { id: toastID });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const formSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const PhoneData = Object.fromEntries(formData);
+    sendPhone(PhoneData);
   };
 
   return (
@@ -72,7 +91,9 @@ function PhoneEditor({ phoneID }) {
         </div>
         <div className={styles["form-block"]}>
           <FormBlock
-            type="number"
+            type="text"
+            title="year: 4-digit numbber"
+            pattern="[0-9]{4}"
             labelText="Release year:"
             inputName="releaseYear"
             defaultValue={phoneData?.releaseYear || ""}
@@ -81,12 +102,17 @@ function PhoneEditor({ phoneID }) {
         </div>
         <div className={styles["form-block"]}>
           <FormBlock
-            type="number"
+            type="text"
+            title="price: number, can be partial"
+            pattern="[0-9.]{1,}"
             labelText="Price ($):"
             inputName="price"
             defaultValue={phoneData?.price || ""}
             required={true}
           />
+        </div>
+        <div className={styles["form-btn-container"]}>
+          <Button text="Submit" backgroundColor="dark" type="submit" />
         </div>
       </form>
     </>
