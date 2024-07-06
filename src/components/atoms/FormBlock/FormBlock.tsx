@@ -12,6 +12,8 @@ interface FormBlock {
   defaultValue: string | number | undefined;
   rtl?: boolean;
   value: string;
+  pattern: string;
+  title: string;
 }
 
 const FormBlock: React.FC<FormBlock> = ({
@@ -23,8 +25,9 @@ const FormBlock: React.FC<FormBlock> = ({
   defaultValue,
   rows = 1,
   required = false,
-  rtl = true,
   value,
+  pattern,
+  title,
 }) => {
   return (
     <>
@@ -33,6 +36,7 @@ const FormBlock: React.FC<FormBlock> = ({
       </label>
       {type === "textarea" ? (
         <textarea
+          title={title}
           id={inputName}
           name={inputName}
           onChange={changeFunc}
@@ -45,6 +49,8 @@ const FormBlock: React.FC<FormBlock> = ({
         />
       ) : (
         <input
+          title={title}
+          pattern={pattern}
           type={type}
           id={inputName}
           name={inputName}
