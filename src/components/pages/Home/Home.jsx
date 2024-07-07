@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import {
+  replaceNonAlphanumeric,
+  revertStringReplacement,
+} from "../../../functions/nonAlphaTranslate";
 import useQuery from "../../../hooks/useQuery";
 import { baseUrl } from "../../../utils/utils";
 import Button from "../../atoms/Button/Button";
@@ -17,15 +22,35 @@ function Home() {
   const [pagesData, setPagesData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [popoverElement, setPopoverElement] = useState();
-
+  const nav = useNavigate();
   const query = useQuery();
+
+  const getQuerySearch = () => {
+    const querySearch = query.get("search") || "";
+    return revertStringReplacement(querySearch);
+  };
+  const [searchString, setSearchString] = useState(getQuerySearch());
+
+  const queryToUsableQuery = () => {
+    const queryObject = { page: "", search: "" };
+    const queryArray = [];
+    Object.keys(queryObject).forEach((key) => {
+      const queryValue =
+        query.get(key) && revertStringReplacement(query.get(key));
+      if (queryValue) {
+        queryArray.push(`${key}=${replaceNonAlphanumeric(queryValue)}`);
+      }
+    });
+    return queryArray.join("&");
+  };
 
   const getPhones = async () => {
     const toastID = toast.loading("Loading Phones");
     setIsLoading(true);
+    const queryString = queryToUsableQuery();
+    nav(`/?${queryString}`);
     try {
-      const { data } = await axios.get(`${baseUrl}phones?/`);
-      console.log(data);
+      const { data } = await axios.get(`${baseUrl}phones?${queryString}`);
       setPhonesArray(data.phones);
       setPagesData(data.pages);
       toast.dismiss(toastID);
@@ -41,7 +66,12 @@ function Home() {
     getPhones();
   };
 
-  //add query later
+  useEffect(() => {
+    if (pagesData) {
+      query.set("page", pagesData.current);
+    }
+  }, [pagesData, query]);
+
   useEffect(() => {
     if (!isLoading) {
       getPhones();
