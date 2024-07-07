@@ -20,6 +20,8 @@
 
 .overlay {
   background: var(--background-color-50p);
+  width: 100%;
+  height: 100%;
 }
 .popover {
   display: flex;
@@ -43,9 +45,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .popover {
-    padding: 5px;
-  }
   .popover-content {
     padding: 5px;
   }
