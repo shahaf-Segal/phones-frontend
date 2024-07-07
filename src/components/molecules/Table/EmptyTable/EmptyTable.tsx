@@ -26,7 +26,7 @@ const EmptyTable: React.FC<EmptyTableProps> = ({
             <Button
               onClick={reset}
               text="reset filters"
-              type="primary"
+              style="primary"
               backgroundColor="dark"
             />
           )}

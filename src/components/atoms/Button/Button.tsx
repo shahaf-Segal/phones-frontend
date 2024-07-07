@@ -10,7 +10,7 @@ interface ButtonProps {
   fullWidth?: boolean;
   backgroundColor: "dark" | "light";
   disabled?: boolean;
-  type: "button" | "reset" | "submit";
+  type?: "button" | "reset" | "submit";
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -6,6 +6,7 @@ import { baseUrl } from "../../../utils/utils";
 import Button from "../../atoms/Button/Button";
 import Icon from "../../atoms/Icon/Icon";
 import Popover from "../../atoms/Popover/Popover";
+import Spinner from "../../atoms/Spinner/Spinner";
 import Pagination from "../../molecules/Pagination/Pagination";
 import Table from "../../molecules/Table/Table";
 import PhoneEditor from "../../PhoneEditor/PhoneEditor";
@@ -24,6 +25,7 @@ function Home() {
     setIsLoading(true);
     try {
       const { data } = await axios.get(`${baseUrl}phones?/`);
+      console.log(data);
       setPhonesArray(data.phones);
       setPagesData(data.pages);
       toast.dismiss(toastID);
@@ -115,10 +117,19 @@ function Home() {
           />
         </div>
       </div>
-      <div className={styles["table-container"]}>
-        {isLoading || <Table columns={columns} data={phonesArray} />}
-        <Pagination currentPage={1} totalPages={3} />
-      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className={styles["table-container"]}>
+          <Table columns={columns} data={phonesArray} />
+          {pagesData && (
+            <Pagination
+              currentPage={pagesData.current}
+              totalPages={pagesData.total}
+            />
+          )}
+        </div>
+      )}
 
       <Popover isPopoverOpen={Boolean(popoverElement)} onClose={closePopover}>
         {popoverElement}
