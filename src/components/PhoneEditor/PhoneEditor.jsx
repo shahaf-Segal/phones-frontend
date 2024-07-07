@@ -8,9 +8,10 @@ import FormBlock from "../atoms/FormBlock/FormBlock";
 import styles from "./PhoneEditor.module.css";
 PhoneEditor.propTypes = {
   phoneID: PropTypes.string,
+  closePopover: PropTypes.func,
 };
 
-function PhoneEditor({ phoneID }) {
+function PhoneEditor({ phoneID, closePopover }) {
   const [phoneData, setPhoneData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,6 +46,7 @@ function PhoneEditor({ phoneID }) {
         : axios.post(`${baseUrl}phones/`, phoneData);
       await sentRequest;
       toast.success("Phone saved succesfully", { id: toastID });
+      closePopover();
     } catch (error) {
       toast.error(error.message, { id: toastID });
     } finally {
