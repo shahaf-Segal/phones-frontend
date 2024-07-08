@@ -11,6 +11,7 @@ interface ButtonProps {
   backgroundColor: "dark" | "light";
   disabled?: boolean;
   type?: "button" | "reset" | "submit";
+  maxContent?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,12 +24,13 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   backgroundColor = "light",
   disabled,
+  maxContent,
 }) => {
   const buttonClassName = `${styles.button} ${styles[`button-${style}`]} ${
     styles[`button-${style}-${backgroundColor}`]
   } ${fullWidth ? styles["full-width"] : ""} ${
     disabled ? styles["button-disabled"] : ""
-  }`;
+  } ${maxContent ? styles["button-max-content"] : ""}`;
   return (
     <button
       type={type}

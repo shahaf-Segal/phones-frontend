@@ -9,6 +9,9 @@
   font-weight: 600;
   line-height: 24px;
 }
+.button-max-content {
+  min-width: max-content;
+}
 
 /** primary Btn  */
 .button-primary {
