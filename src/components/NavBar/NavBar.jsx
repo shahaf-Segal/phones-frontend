@@ -5,7 +5,6 @@ function NavBar() {
   const navLinks = (
     <>
       <NavigateLink to={"/"} text={"Home"} />
-      <NavigateLink to={"/auth"} text={"Login/Sign Up"} />
     </>
   );
 
