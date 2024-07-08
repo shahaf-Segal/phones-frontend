@@ -12,6 +12,9 @@ function AppToaster() {
     loading: {
       duration: 60000,
     },
+    custom: {
+      duration: 30000,
+    },
   };
 
   return (

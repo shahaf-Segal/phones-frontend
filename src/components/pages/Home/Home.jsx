@@ -9,6 +9,7 @@ import {
 import useQuery from "../../../hooks/useQuery";
 import { baseUrl } from "../../../utils/utils";
 import Button from "../../atoms/Button/Button";
+import ConfirmBox from "../../atoms/ConfirmBox/ConfirmBox";
 import Icon from "../../atoms/Icon/Icon";
 import Popover from "../../atoms/Popover/Popover";
 import { SearchBar } from "../../atoms/SearchBar/SearchBar";
@@ -16,6 +17,7 @@ import Spinner from "../../atoms/Spinner/Spinner";
 import Pagination from "../../molecules/Pagination/Pagination";
 import Table from "../../molecules/Table/Table";
 import PhoneEditor from "../../PhoneEditor/PhoneEditor";
+import EditDeleteBtn from "./EditDeleteBtn/EditDeleteBtn";
 import styles from "./Home.module.css";
 
 function Home() {
@@ -23,6 +25,7 @@ function Home() {
   const [pagesData, setPagesData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [popoverElement, setPopoverElement] = useState();
+  const [confirmToastId, setConfirmToastId] = useState("");
   const nav = useNavigate();
   const query = useQuery();
 
@@ -60,6 +63,23 @@ function Home() {
     } finally {
       setIsLoading(false);
     }
+  };
+  const deletePhone = async (phoneID) => {
+    const toastID = toast.loading("deleting Phone");
+    setIsLoading(true);
+    try {
+      await axios.delete(`${baseUrl}phones/${[phoneID]}`);
+      toast.success("Phone Deleted", { id: toastID });
+    } catch (error) {
+      toast.error(error.message, { id: toastID });
+    } finally {
+      setIsLoading(false);
+      getPhones();
+    }
+  };
+  const confirmPhoneDelete = (phoneID, toastID) => {
+    toast.dismiss(toastID);
+    deletePhone(phoneID);
   };
 
   const closePopover = () => {
@@ -115,19 +135,32 @@ function Home() {
     },
     {
       header: "Edit",
-      cellContent: (
-        <Button
-          icon={<Icon name="EditBtnIcon" color="var(--light-text-color)" />}
-          fullWidth={true}
-        />
-      ),
+      cellContent: <EditDeleteBtn />,
       width: "15%",
       propsMapping: (data) => {
         return {
-          onClick: () => {
+          editOnClick: () => {
             setPopoverElement(
               <PhoneEditor phoneID={data._id} closePopover={closePopover} />
             );
+          },
+          deleteOnClick: () => {
+            toast.dismiss(confirmToastId);
+            const toastID = toast.custom(
+              (t) => (
+                <ConfirmBox
+                  message={`Do you want to delete ${data.model} ?`}
+                  cancelText="Delete"
+                  confirmText="Cancel"
+                  onCancel={() => {
+                    confirmPhoneDelete(data._id, t.id);
+                  }}
+                  onConfirm={() => toast.dismiss(t.id)}
+                />
+              ),
+              { position: "top-center" }
+            );
+            setConfirmToastId(toastID);
           },
         };
       },
