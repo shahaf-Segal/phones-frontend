@@ -45,7 +45,7 @@ To start the app in development mode with hot-reloading:
 1. Run the development server:
 
    ```sh
-   npm start
+   npm run dev
    ```
 
    This will start the development server and open the app in your default web browser at `http://localhost:3000`.
