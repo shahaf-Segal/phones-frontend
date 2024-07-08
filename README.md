@@ -1,5 +1,6 @@
 # PhoneDB - React Phone managment App
 A simple phone directory application built with React. This application allows users to add, edit, and delete contacts.
+this only the client, for server either run it locally or connect to the dedicated server
 
 ## Table of Contents
 
@@ -23,13 +24,13 @@ To get started with the Phone Directory App, you need to have Node.js and npm (N
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-username/phone-directory-app.git
+   git clone https://github.com/shahaf-Segal/phones-frontend.git
    ```
 
 2. Navigate to the project directory:
 
    ```sh
-   cd phone-directory-app
+   cd phone-frontend
    ```
 
 3. Install the dependencies:
@@ -37,12 +38,17 @@ To get started with the Phone Directory App, you need to have Node.js and npm (N
    ```sh
    npm install
    ```
+4. Add a .env file:
+   ```sh
+   VITE_SERVER_URL=<Server-IP>
+   ```
+   it should contain the Server-IP and end with '/'
 
 ## Development Setup
 
 To start the app in development mode with hot-reloading:
 
-1. Run the development server:
+1. Run the development frontend:
 
    ```sh
    npm run dev
@@ -75,7 +81,7 @@ To serve the production build locally, you can use a static server such as `serv
 2. Serve the production build:
 
    ```sh
-   serve -s build
+   serve -s dist
    ```
 
    a prompt will open leading you to the website
