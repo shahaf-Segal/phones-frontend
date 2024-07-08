@@ -1,6 +1,6 @@
 .table {
   width: 100%;
-  background-color: var(--whiteColor);
+  background-color: var(--background-color);
   border-radius: 24px;
 }
 
@@ -20,9 +20,10 @@
 }
 
 .table-row {
-  border-bottom: 1px solid #efefef;
+  border: 5px solid;
 }
 
 .table-data-cell {
-  padding: 12px;
+  padding: 10px;
+  border: 2px solid var(--background-light-color);
 }

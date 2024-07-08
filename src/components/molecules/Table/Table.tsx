@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement } from "react";
-// import { Icon } from "../../atoms/Icon";
+import { Icon } from "../../atoms/Icon";
 import EmptyTable from "./EmptyTable/EmptyTable.jsx";
 import styles from "./Table.module.css";
 
@@ -98,7 +98,7 @@ const Table: React.FC<TableProps> = ({
               {column.header}
               {column.sortable && (
                 <span className={styles["sort-icon"]}>
-                  {/* {sort.sortOrder === "asc" ? (
+                  {sort.sortOrder === "asc" ? (
                     <Icon
                       name="ArrowDownIcon"
                       style={{ transform: "rotate(180deg)" }}
@@ -113,7 +113,7 @@ const Table: React.FC<TableProps> = ({
                       width={16}
                       height={16}
                     />
-                  )} */}
+                  )}
                 </span>
               )}
             </th>

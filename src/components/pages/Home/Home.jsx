@@ -135,7 +135,7 @@ function Home() {
   ];
 
   return (
-    <div>
+    <div className={styles["home-page"]}>
       <div className={styles["top-bar"]}>
         <div className={styles["top-bar-btn"]}>
           <Button

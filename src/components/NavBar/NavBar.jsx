@@ -1,3 +1,4 @@
+import Icon from "../atoms/Icon/Icon";
 import styles from "./NavBar.module.css";
 import NavigateLink from "./NavigateLink/NavigateLink";
 
@@ -10,9 +11,15 @@ function NavBar() {
 
   return (
     <div className={styles["nav-bar"]}>
-      <div className={styles["logo container"]}></div>
+      <div className={styles["logo container"]}>
+        <Icon
+          name="PhoneCallIcon"
+          width={30}
+          height={30}
+          color="var(--purple-color)"
+        />
+      </div>
       <div className={styles["page-navigation"]}>{navLinks}</div>
-      <div className={styles["contact-btn"]}></div>
     </div>
   );
 }

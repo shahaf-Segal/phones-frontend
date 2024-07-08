@@ -1,0 +1,27 @@
+.icon-dropdown-container {
+  position: relative;
+}
+.icon-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+}
+.icon-dropdown-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--background-light-color);
+}
+.dropdown-item {
+  background-color: var(--background-color);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: var(--purple-color);
+}

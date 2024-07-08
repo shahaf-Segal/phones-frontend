@@ -3,8 +3,9 @@
   display: flex;
   position: sticky;
   width: 100%;
+  padding: 30px;
   min-height: 75px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }

@@ -16,9 +16,12 @@
 /** primary Btn  */
 .button-primary {
   border-radius: 25px;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px;
   border: none;
   color: var(--highlight-text-color);
+}
+.button-primary:hover {
+  background-color: var(--purple-color);
 }
 
 .button-primary-dark {
@@ -32,7 +35,7 @@
 /** secondary Btn  */
 .button-secondary {
   border-radius: 25px;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px;
   border: none;
   color: var(--mainPurpleColor);
 }
@@ -53,7 +56,7 @@
 .button-borderless {
   border-radius: 8px;
   background-color: #f9f9fb;
-  padding: 10px 16px 10px 16px;
+  padding: 5px 8px;
 }
 .button-borderless-dark {
   color: #8792a1;
@@ -70,7 +73,7 @@
 .button-outline {
   border: 1px solid #8792a1;
   border-radius: 25px;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px;
 }
 
 .button-outline-dark {

@@ -11,7 +11,7 @@ SearchBar.propTypes = {
 
 export function SearchBar({ sendSearch }) {
   const [input, setInput] = useState("");
-  const [optionSelected, setOptionSelected] = useState("");
+  const [optionSelected, setOptionSelected] = useState("model");
 
   const selectOptions = ["model", "brand", "os"];
 
@@ -30,12 +30,15 @@ export function SearchBar({ sendSearch }) {
       />
       <input
         className={styles["search-input"]}
-        placeholder="search"
+        placeholder={`search by ${optionSelected}`}
         value={input}
         onChange={handleChange}
       />
       <div className={styles["select-container"]}>
-        <IconDropDown options={selectOptions}></IconDropDown>
+        <IconDropDown
+          options={selectOptions}
+          changeOption={setOptionSelected}
+        />
       </div>
     </div>
   );
