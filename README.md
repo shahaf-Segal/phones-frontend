@@ -9,7 +9,6 @@ A simple phone directory application built with React. This application allows u
 - [Building for Production](#building-for-production)
 - [Running the Production Build](#running-the-production-build)
 - [Usage](#usage)
-- [Contributing](#contributing)
 
 ## Features
 
