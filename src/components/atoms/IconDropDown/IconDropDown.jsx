@@ -30,8 +30,6 @@ function IconDropDown({ options, changeOption }) {
     ));
   }, [options, changeOption]);
 
-  console.log(renderOptions);
-
   return (
     <div className={styles["icon-dropdown-container"]}>
       <Icon
