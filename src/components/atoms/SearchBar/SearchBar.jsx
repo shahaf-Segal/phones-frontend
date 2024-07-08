@@ -21,13 +21,15 @@ export function SearchBar({ sendSearch }) {
 
   return (
     <div className={styles["input-wrapper"]}>
-      <Icon
-        name="MagnifyingGlassIcon"
-        onClick={() => sendSearch(input)}
-        color="var(--purple-color)"
-        width={20}
-        height={20}
-      />
+      <div className={styles["search-icon"]}>
+        <Icon
+          name="MagnifyingGlassIcon"
+          onClick={() => sendSearch(input)}
+          color="var(--purple-color)"
+          width={20}
+          height={20}
+        />
+      </div>
       <input
         className={styles["search-input"]}
         placeholder={`search by ${optionSelected}`}
