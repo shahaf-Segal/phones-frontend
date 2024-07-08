@@ -10,6 +10,7 @@ this only the client, for server either run it locally or connect to the dedicat
 - [Building for Production](#building-for-production)
 - [Running the Production Build](#running-the-production-build)
 - [Usage](#usage)
+- [Approach](#approach)
 
 ## Features
 
@@ -91,3 +92,6 @@ To serve the production build locally, you can use a static server such as `serv
 1. Open the app in your browser.
 2. Edit and Add new phones
 3. Sort and Filter to view Phones differently
+
+## Approach
+My goal was to create a single-page application for the phone directory, providing a seamless user experience by keeping all functionalities on one page. This design allows users to add, view, and edit within the same interface, eliminating the need to navigate between different pages. This ensures that all data and editing features are easily accessible and intuitive to use.
