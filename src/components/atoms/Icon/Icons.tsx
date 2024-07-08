@@ -22,6 +22,8 @@ const CommentIcon = lazy(async () => import("./icons/CommentIcon.svg?react"));
 const DownloadArrowIcon = lazy(
   async () => import("./icons/DownloadArrowIcon.svg?react")
 );
+const DeleteIcon = lazy(async () => import("./icons/DeleteIcon.svg?react"));
+
 const EditBtnIcon = lazy(async () => import("./icons/EditBtnIcon.svg?react"));
 
 const EnvelopeIcon = lazy(async () => import("./icons/EnvelopeIcon.svg?react"));
@@ -89,6 +91,7 @@ export const icons = {
   ChampagneGlassesIcon,
   CircleRegularIcon,
   CommentIcon,
+  DeleteIcon,
   DownloadArrowIcon,
   EditBtnIcon,
   EnvelopeIcon,
