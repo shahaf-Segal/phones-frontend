@@ -4,13 +4,21 @@
   padding: 5px;
   width: 100%;
   align-items: center;
+  justify-content: space-between;
 }
 
-.top-bat-btn {
-  width: 30%;
+.top-bar-btn {
+  width: max-content;
 }
 
 .table-container {
   width: 100%;
   overflow-x: auto;
+}
+.spinner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+  align-items: center;
 }

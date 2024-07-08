@@ -11,6 +11,7 @@ import { baseUrl } from "../../../utils/utils";
 import Button from "../../atoms/Button/Button";
 import Icon from "../../atoms/Icon/Icon";
 import Popover from "../../atoms/Popover/Popover";
+import { SearchBar } from "../../atoms/SearchBar/SearchBar";
 import Spinner from "../../atoms/Spinner/Spinner";
 import Pagination from "../../molecules/Pagination/Pagination";
 import Table from "../../molecules/Table/Table";
@@ -144,11 +145,15 @@ function Home() {
               setPopoverElement(<PhoneEditor closePopover={closePopover} />);
             }}
             fullWidth
+            maxContent
           />
         </div>
+        <SearchBar />
       </div>
       {isLoading ? (
-        <Spinner />
+        <div className={styles["spinner-container"]}>
+          <Spinner />
+        </div>
       ) : (
         <div className={styles["table-container"]}>
           <Table columns={columns} data={phonesArray} />
