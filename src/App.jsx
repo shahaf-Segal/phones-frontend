@@ -13,7 +13,6 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<div></div>} />
           </Routes>
         </main>
         <AppToaster />
