@@ -1,0 +1,36 @@
+.confirm-box {
+  background: var(--background-light-color);
+  padding: 10px;
+  min-width: 100px;
+  min-height: 50px;
+  border-radius: 10px;
+  row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.confirm-text {
+  text-wrap: wrap;
+  text-align: center;
+  align-self: center;
+  max-width: 150px;
+}
+
+.confirm-box-buttons-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.cancel-btn,
+.confirm-btn {
+  border-radius: 5px;
+  color: var(--light-text-color);
+}
+.cancel-btn {
+  background-color: var(--red-color);
+}
+.confirm-btn {
+  background-color: var(--green-color);
+}
