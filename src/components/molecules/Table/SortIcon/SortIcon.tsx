@@ -13,7 +13,7 @@ type SortProps = {
 const SortIcon: FC<SortProps> = ({ sort, sortKey = "" }) => {
   const isSortActive = sortKey === sort.sortBy;
 
-  const isIconUp = !isSortActive || sort.sortOrder === "asc";
+  const isIconDown = !isSortActive || sort.sortOrder === "asc";
 
   return (
     <span
@@ -23,7 +23,7 @@ const SortIcon: FC<SortProps> = ({ sort, sortKey = "" }) => {
     >
       <Icon
         name="ArrowDownIcon"
-        style={isIconUp ? { transform: "rotate(180deg)" } : {}}
+        style={isIconDown ? {} : { transform: "rotate(180deg)" }}
         color="var(--background-light-color)"
         width={25}
         height={25}

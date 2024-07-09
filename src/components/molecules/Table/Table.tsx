@@ -88,7 +88,9 @@ const Table: React.FC<TableProps> = ({
               onClick={() => {
                 if (column.sortable && sort) {
                   const newSortOrder =
-                    sort.sortOrder === "desc" ? "asc" : "desc";
+                    sort.sortOrder === "desc" || sort.sortBy != column.sortKey
+                      ? "asc"
+                      : "desc";
                   setSort({
                     sortBy: column.sortKey,
                     sortOrder: newSortOrder,
