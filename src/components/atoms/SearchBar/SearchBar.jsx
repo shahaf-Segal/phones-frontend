@@ -31,6 +31,11 @@ export function SearchBar({ sendSearch, query }) {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      activateSearch();
+    }
+  };
 
   useEffect(() => {
     const getFirstSearch = () => {
@@ -38,7 +43,7 @@ export function SearchBar({ sendSearch, query }) {
         const queryValue = query.get(selectOptions[i]);
         if (queryValue) return [selectOptions[i], queryValue];
       }
-      return ["", ""];
+      return ["model", ""];
     };
     const [queryOption, queryInput] = getFirstSearch();
     setInput(queryInput);
@@ -58,10 +63,12 @@ export function SearchBar({ sendSearch, query }) {
       </div>
       <input
         className={styles["search-input"]}
+        type="search"
         placeholder={`search by ${optionSelected}`}
         value={input}
         onChange={handleChange}
-        title={`search by ${selectOptions}`}
+        onKeyDown={onKeyPress}
+        title={`search by ${optionSelected}`}
       />
       <div className={styles["select-container"]}>
         <IconDropDown
