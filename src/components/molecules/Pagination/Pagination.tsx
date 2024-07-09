@@ -3,19 +3,16 @@ import styles from "./Pagination.module.css";
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  fetchFunction: (page: number) => void;
   changePage: (page: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
-  fetchFunction,
   changePage,
 }) => {
   const handleClick = (page: number) => {
     changePage(page);
-    fetchFunction(page);
   };
 
   const pagesToShow = 3;
