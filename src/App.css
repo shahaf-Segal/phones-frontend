@@ -5,6 +5,7 @@
   align-items: center;
   background: var(--background-color);
   color: var(--light-text-color);
+  color-scheme: dark;
 }
 body {
   margin: 0;
