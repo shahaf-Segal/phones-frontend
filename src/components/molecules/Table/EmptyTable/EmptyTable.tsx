@@ -19,9 +19,9 @@ const EmptyTable: React.FC<EmptyTableProps> = ({
             name="DumpsterIcon"
             height={100}
             width={100}
-            color="var(--mainPurpleColor)"
+            color="var(--purple-color)"
           />
-          <h1>לא נמצאו התאמות</h1>
+          <h1>No Matches Found</h1>
           {reset && (
             <Button
               onClick={reset}
