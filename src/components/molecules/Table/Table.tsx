@@ -1,6 +1,6 @@
 import { cloneElement, isValidElement } from "react";
-import { Icon } from "../../atoms/Icon";
 import EmptyTable from "./EmptyTable/EmptyTable.jsx";
+import SortIcon from "./SortIcon/SortIcon";
 import styles from "./Table.module.css";
 
 /**
@@ -24,6 +24,7 @@ interface TableColumn {
     | Record<string, string>
     | ((data: Record<string, any>) => Record<string, any>);
   sortable?: boolean;
+  sortKey?: string;
 }
 
 /**
@@ -46,7 +47,7 @@ interface TableProps {
   sort?: { sortBy: keyof Record<string, any>; sortOrder: "asc" | "desc" };
   setSort?: React.Dispatch<
     React.SetStateAction<{
-      sortBy: keyof Record<string, any>;
+      sortBy: string | undefined;
       sortOrder: "asc" | "desc";
     }>
   >;
@@ -87,35 +88,20 @@ const Table: React.FC<TableProps> = ({
               onClick={() => {
                 if (column.sortable && sort) {
                   const newSortOrder =
-                    sort.sortOrder === "asc" ? "desc" : "asc";
+                    sort.sortOrder === "desc" ? "asc" : "desc";
                   setSort({
-                    sortBy: column.cellContent as keyof Record<string, any>,
+                    sortBy: column.sortKey,
                     sortOrder: newSortOrder,
                   });
                 }
               }}
             >
-              {column.header}
-              {column.sortable && (
-                <span className={styles["sort-icon"]}>
-                  {sort.sortOrder === "asc" ? (
-                    <Icon
-                      name="ArrowDownIcon"
-                      style={{ transform: "rotate(180deg)" }}
-                      color="var(--mainGrey)"
-                      width={16}
-                      height={16}
-                    />
-                  ) : (
-                    <Icon
-                      name="ArrowDownIcon"
-                      color="var(--mainGrey)"
-                      width={16}
-                      height={16}
-                    />
-                  )}
-                </span>
-              )}
+              <div className={styles["inner-head-cell"]}>
+                {column.header}
+                {column.sortable && (
+                  <SortIcon sortKey={column.sortKey} sort={sort} />
+                )}
+              </div>
             </th>
           ))}
         </tr>
