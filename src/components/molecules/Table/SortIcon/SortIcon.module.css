@@ -1,0 +1,13 @@
+.sort-icon,
+.sort-icon-deactivated {
+  vertical-align: middle;
+  cursor: pointer;
+  height: 20px;
+  border-radius: 8px;
+}
+.sort-icon {
+  background-color: var(--purple-color);
+}
+.sort-icon-deactivated {
+  background-color: var(--background-dark-color);
+}

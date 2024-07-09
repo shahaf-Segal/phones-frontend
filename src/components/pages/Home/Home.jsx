@@ -6,6 +6,7 @@ import {
   replaceNonAlphanumeric,
   revertStringReplacement,
 } from "../../../functions/nonAlphaTranslate";
+import { extractSortNumber, getSortObj } from "../../../functions/sortNumber";
 import useQuery from "../../../hooks/useQuery";
 import { baseUrl } from "../../../utils/utils";
 import Button from "../../atoms/Button/Button";
@@ -26,23 +27,27 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [popoverElement, setPopoverElement] = useState();
   const [confirmToastId, setConfirmToastId] = useState("");
+  const [sortObj, setSortObj] = useState({ sortBy: "price", sortOrder: "asc" });
+
   const nav = useNavigate();
   const query = useQuery();
 
-  const getQuerySearch = () => {
-    const querySearch = query.get("search") || "";
-    return revertStringReplacement(querySearch);
+  const changePageNumber = (pageNumber) => {
+    setPagesData({ ...pagesData, current: pageNumber });
   };
-  const [searchString, setSearchString] = useState(getQuerySearch());
+
+  const resetSite = () => {
+    window.location.href = "/";
+  };
 
   const queryToUsableQuery = () => {
-    const queryObject = { page: "", search: "" };
+    const queryOptions = ["page", "model", "os", "brand", "sort"];
     const queryArray = [];
-    Object.keys(queryObject).forEach((key) => {
+    queryOptions.forEach((option) => {
       const queryValue =
-        query.get(key) && revertStringReplacement(query.get(key));
+        query.get(option) && revertStringReplacement(query.get(option));
       if (queryValue) {
-        queryArray.push(`${key}=${replaceNonAlphanumeric(queryValue)}`);
+        queryArray.push(`${option}=${replaceNonAlphanumeric(queryValue)}`);
       }
     });
     return queryArray.join("&");
@@ -89,15 +94,30 @@ function Home() {
 
   useEffect(() => {
     if (pagesData) {
+      const lastPage = query.get("page");
       query.set("page", pagesData.current);
+      //load if the page changes
+      if (lastPage !== pagesData.current && lastPage != "") {
+        getPhones();
+      }
     }
   }, [pagesData, query]);
 
   useEffect(() => {
     if (!isLoading) {
+      query.set("sort", query.get("sort") || "0");
+      setSortObj(getSortObj(Number(query.get("sort"))));
       getPhones();
     }
   }, []);
+  useEffect(() => {
+    if (sortObj) {
+      const sortNumber = extractSortNumber(sortObj);
+      const lastSort = query.get("sort");
+      query.set("sort", sortNumber);
+      if (lastSort != sortNumber) getPhones();
+    }
+  }, [sortObj]);
 
   const columns = [
     {
@@ -117,6 +137,8 @@ function Home() {
       cellContent: "releaseYear",
       width: "8%",
       textAlign: "center",
+      sortable: true,
+      sortKey: "releaseYear",
     },
     {
       header: "Price",
@@ -126,6 +148,8 @@ function Home() {
       propsMapping: (data) => ({
         children: `${data.price}$`,
       }),
+      sortable: true,
+      sortKey: "price",
     },
     {
       header: "OS",
@@ -181,7 +205,7 @@ function Home() {
             maxContent
           />
         </div>
-        <SearchBar />
+        <SearchBar sendSearch={getPhones} query={query} />
       </div>
       {isLoading ? (
         <div className={styles["spinner-container"]}>
@@ -189,11 +213,18 @@ function Home() {
         </div>
       ) : (
         <div className={styles["table-container"]}>
-          <Table columns={columns} data={phonesArray} />
+          <Table
+            columns={columns}
+            data={phonesArray}
+            reset={resetSite}
+            sort={sortObj}
+            setSort={setSortObj}
+          />
           {pagesData && (
             <Pagination
-              currentPage={pagesData.current}
-              totalPages={pagesData.total}
+              currentPage={Number(pagesData.current)}
+              totalPages={Number(pagesData.total)}
+              changePage={changePageNumber}
             />
           )}
         </div>
